@@ -1,8 +1,17 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
+import { AppProps } from 'next/app';
+import React from 'react';
+
+if (typeof window !== "undefined") {
+  window.history.scrollRestoration = "manual";
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <ChakraProvider>
+          <Component {...pageProps} />
+    </ChakraProvider>
+  );
 }
 
 export default MyApp
