@@ -1,3 +1,4 @@
+import { background } from '@chakra-ui/react';
 import Document, {
 	DocumentContext,
 	Head,
@@ -43,12 +44,6 @@ export default class MyDocument extends Document {
 			<Html lang="fr">
 				<Head>
 					<meta charSet="utf-8" />
-					<link rel="preconnect" href="https://fonts.gstatic.com" />
-					<link
-						href="https://fonts.googleapis.com/css2?family=Krona+One&family=Roboto:wght@400;700&display=swap"
-						rel="stylesheet"
-					/>
-
 					<meta property="og:title" content="Pierre IDÉ" />
 					<meta property="og:type" content="website" />
 					<meta property="og:url" content="https://piux.fr" />
@@ -65,7 +60,7 @@ export default class MyDocument extends Document {
 
 					<meta name="theme-color" content="#FFA500" />
 				</Head>
-				<body>
+				<body style={{ height: "100vh", width: "100vw", backgroundImage: "radial-gradient(ellipse at bottom, #CA8B12 0%, #000000 80%);" }}>
 					<Main />
 					<NextScript />
 				</body>
