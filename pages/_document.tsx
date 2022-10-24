@@ -40,7 +40,7 @@ export default class MyDocument extends Document {
 		const description = `Pierre IDÉ, a young big brain developed `;
 
 		return (
-			<Html lang="en">
+			<Html lang="fr">
 				<Head>
 					<meta charSet="utf-8" />
 					<link rel="preconnect" href="https://fonts.gstatic.com" />
