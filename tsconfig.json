@@ -19,6 +19,6 @@
       "~/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.test.tsx", "jest.config.js", "jest.config.js", "pages/_app.test.tsx"],
   "exclude": ["node_modules"]
 }

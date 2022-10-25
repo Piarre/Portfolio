@@ -6,8 +6,8 @@ import Navbar from "../components/Layouts/Navbar";
 
 const Home: NextPage = () => {
   return (
-    <Box className="orange_gradient">
-      {/* <Navbar /> */}
+    <Box>
+      <Navbar />
     </Box>
   );
 }
