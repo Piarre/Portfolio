@@ -1,4 +1,3 @@
-import { background } from '@chakra-ui/react';
 import Document, {
   DocumentContext,
   Head,
@@ -39,7 +38,7 @@ export default class MyDocument extends Document {
     const description = `Pierre IDÉ, a young big brain developed `;
 
     return (
-      <Html lang="fr">
+      <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
           <meta property="og:title" content="Pierre IDÉ" />
@@ -60,10 +59,10 @@ export default class MyDocument extends Document {
         </Head>
         <body
           style={{
-            height: '100% auto',
-            width: '100% auto',
+            height: '100vh',
+            width: '100vw',
             backgroundImage:
-              'radial-gradient(ellipse at bottom, #CA8B12 0%, #101010 80%);',
+              'radial-gradient(ellipse at bottom, #291F0B 0%, #000000 100%)',
           }}
         >
           <Main />
