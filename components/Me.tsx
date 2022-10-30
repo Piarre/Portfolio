@@ -1,7 +1,12 @@
+import { Box } from '@chakra-ui/layout';
 import React from 'react';
 
 const Me = () => {
-  return <div id="me">Me</div>;
+  return (
+    <>
+      <Box></Box>
+    </>
+  );
 };
 
 export default Me;
