@@ -1,16 +1,21 @@
-import { Box, Container } from "@chakra-ui/react";
-import { NextPage } from "next";
-import Navbar from "../components/Layouts/Navbar";
-
-
+import { Box } from '@chakra-ui/react';
+import { NextPage } from 'next';
+import Sidebar from '../components/Layouts/Sidebar';
+import Footer from '../components/Layouts/Footer';
+import Articles from '~/components/Articles';
+import Header from '~/Layouts/Header';
 
 const Home: NextPage = () => {
   return (
-    <Box>
-      <Navbar />
-    </Box>
+    <>
+      <Box>
+        <Sidebar />
+        <Header />
+
+        <Footer />
+      </Box>
+    </>
   );
-}
+};
 
-export default Home
-
+export default Home;

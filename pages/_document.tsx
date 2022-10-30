@@ -59,10 +59,11 @@ export default class MyDocument extends Document {
         </Head>
         <body
           style={{
-            height: '100vh',
+            minHeight: '100vh',
             width: '100vw',
             backgroundImage:
-              'radial-gradient(ellipse at bottom, #291F0B 0%, #000000 100%)',
+              'radial-gradient(ellipse at bottom, #291F0B 0%, #000000 100%) ',
+            backgroundRepeat: "no-repeat"
           }}
         >
           <Main />

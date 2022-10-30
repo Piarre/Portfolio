@@ -16,16 +16,25 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { ReactText } from 'react';
+import { IconType } from 'react-icons';
+import { FaArrowAltCircleUp } from 'react-icons/fa';
+import { PropsWithChild } from '~/lib/Types';
 
 interface LinkItemProps {
   name: string;
+  link: string;
+  icon?: IconType | undefined;
 }
-const LinkItems: Array<LinkItemProps> = [{ name: 'Me' }, { name: 'Projects' }];
+const LinkItems: Array<LinkItemProps> = [
+  { name: '', link: '#', icon: FaArrowAltCircleUp },
+  { name: 'Me', link: '#me' },
+  { name: 'Projects', link: '#projects' },
+];
 
-export default function SimpleSidebar({ children }: { children: ReactNode }) {
+function Sidebar(props: PropsWithChild) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh">
+    <Box>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
@@ -40,14 +49,16 @@ export default function SimpleSidebar({ children }: { children: ReactNode }) {
         size="full"
       >
         <DrawerContent>
-          <SidebarContent onClose={onClose} />
+          <SidebarContent
+            onClose={onClose}
+            onClick={onClose}
+            style={{ ...props.style }}
+          />
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
       <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        {children}
-      </Box>
+      <Box ml={{ base: 0, md: 60 }} p="4"></Box>
     </Box>
   );
 }
@@ -63,7 +74,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map(link => (
-        <NavItem key={link.name}>{link.name}</NavItem>
+        <NavItem key={link.name} href={link.link} icon={link.icon}>
+          {link.name}
+        </NavItem>
       ))}
     </Box>
   );
@@ -71,11 +84,13 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
 interface NavItemProps extends FlexProps {
   children: ReactText;
+  href: string;
+  icon: IconType | undefined;
 }
-const NavItem = ({ children }: NavItemProps) => {
+const NavItem = ({ children, href, icon }: NavItemProps) => {
   return (
     <Link
-      href="#"
+      href={href}
       style={{ textDecoration: 'none' }}
       _focus={{ boxShadow: 'none' }}
     >
@@ -91,6 +106,16 @@ const NavItem = ({ children }: NavItemProps) => {
             color: '#DD6B20',
           }}
         >
+          {icon && (
+            <Icon
+              mr="4"
+              fontSize="16"
+              _groupHover={{
+                color: 'white',
+              }}
+              as={icon}
+            />
+          )}
           {children}
         </Button>
       </Flex>
@@ -122,3 +147,5 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
     </Flex>
   );
 };
+
+export default Sidebar;
