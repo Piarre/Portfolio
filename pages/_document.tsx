@@ -1,3 +1,4 @@
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import Document, {
   DocumentContext,
   Head,
@@ -7,6 +8,7 @@ import Document, {
 } from 'next/document';
 
 import { ServerStyleSheet } from 'styled-components';
+import theme from '~/lib/Theme';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -63,7 +65,7 @@ export default class MyDocument extends Document {
             width: '100vw',
             backgroundImage:
               'radial-gradient(ellipse at bottom, #291F0B 0%, #000000 100%) ',
-            backgroundRepeat: "no-repeat"
+            backgroundRepeat: 'no-repeat',
           }}
         >
           <Main />
