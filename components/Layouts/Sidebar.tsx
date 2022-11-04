@@ -17,18 +17,20 @@ import {
 } from '@chakra-ui/react';
 import { ReactText } from 'react';
 import { IconType } from 'react-icons';
-import { FaArrowAltCircleUp } from 'react-icons/fa';
+import { FaDotCircle } from 'react-icons/fa';
 import { PropsWithChild } from '~/lib/Types';
+import { motion } from 'framer-motion';
 
 interface LinkItemProps {
   name: string;
   link: string;
   icon?: IconType | undefined;
+  duration: number;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: '', link: '#', icon: FaArrowAltCircleUp },
-  { name: 'Me', link: '#me' },
-  { name: 'Projects', link: '#projects' },
+  { name: '', link: '#', icon: FaDotCircle, duration: 0.5 },
+  { name: 'Me', link: '#me', duration: 0.7 },
+  { name: 'Projects', link: '#projects', duration: 0.9 },
 ];
 
 function Sidebar(props: PropsWithChild) {
@@ -74,7 +76,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map(link => (
-        <NavItem key={link.name} href={link.link} icon={link.icon}>
+        <NavItem
+          key={link.name}
+          href={link.link}
+          icon={link.icon}
+          duration={link.duration}
+        >
           {link.name}
         </NavItem>
       ))}
@@ -86,40 +93,48 @@ interface NavItemProps extends FlexProps {
   children: ReactText;
   href: string;
   icon: IconType | undefined;
+  duration: number;
 }
-const NavItem = ({ children, href, icon }: NavItemProps) => {
+const NavItem = ({ children, href, icon, duration }: NavItemProps) => {
   return (
-    <Link
-      href={href}
-      style={{ textDecoration: 'none' }}
-      _focus={{ boxShadow: 'none' }}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, y: 0 }}
+      style={{ y: 70 }}
+      transition={{ duration: duration, ease: 'easeInOut' }}
     >
-      <Flex>
-        <Button
-          p="4"
-          mx="4"
-          size={'lg'}
-          role="group"
-          variant={'link'}
-          cursor="pointer"
-          _hover={{
-            color: '#DD6B20',
-          }}
-        >
-          {icon && (
-            <Icon
-              mr="4"
-              fontSize="16"
-              _groupHover={{
-                color: 'white',
-              }}
-              as={icon}
-            />
-          )}
-          {children}
-        </Button>
-      </Flex>
-    </Link>
+      <Link
+        href={href}
+        style={{ textDecoration: 'none' }}
+        _focus={{ boxShadow: 'none' }}
+      >
+        <Flex>
+          <Button
+            p="4"
+            mx="4"
+            size={'lg'}
+            role="group"
+            variant={'link'}
+            cursor="pointer"
+            _hover={{
+              color: '#DD6B20',
+            }}
+          >
+            {icon && (
+              <Icon
+                mr="4"
+                fontSize="16"
+                _groupHover={{
+                  color: 'white',
+                }}
+                as={icon}
+              />
+            )}
+            {children}
+          </Button>
+        </Flex>
+      </Link>
+    </motion.div>
   );
 };
 
