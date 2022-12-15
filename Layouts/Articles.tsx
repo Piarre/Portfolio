@@ -1,6 +1,6 @@
 import React from 'react';
-import Me from './Me';
-import Projects from './Projects';
+import Me from '../components/Me';
+import Projects from '../components/Projects';
 
 const Articles = () => {
   return (
